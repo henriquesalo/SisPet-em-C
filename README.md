@@ -1,2 +1,2 @@
 SisPet em C 
-SEM INTERFACE GRÁFICA
+Sem Interface Gráfica

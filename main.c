@@ -3,8 +3,70 @@
 #include <string.h>
 #include <unistd.h>
 #include <conio.h>
+#include <locale.h>
 
 #define BUFFER 64
+
+char login[15] , senha[15] , cad_login[15] , cad_senha[15];
+int ret_login , ret_senha,escolha;
+
+int main(void){
+  printf("----------------------------\n");
+  printf("    BEM-VINDO AO SISPET\n");
+  printf("----------------------------\n");
+
+  printf("1-Cadastrar\n");
+  printf("2-Login\n");
+  printf("Qual sua escolha? ");
+  scanf("%i",&escolha);
+
+  system("cls");
+
+  switch(escolha){
+  case 1:
+    return cadastro();
+  case 2:
+    return login1();
+    }
+}
+int cadastro(void)
+{
+    setlocale(LC_ALL, "Portuguese");
+    printf("--------------------------\n");
+    printf("  CADASTRO LOGIN E SENHA\n");
+    printf("--------------------------\n");
+
+    printf("Login no máximo 10 caracteres:\n");
+    scanf("%s",&cad_login);
+    printf("Senha no máximo 10 caracteres:\n");
+    scanf("%s",&cad_senha);
+    printf("Cadastro realizado com sucesso\n");
+
+    system("cls");
+    return login1() ;
+  }
+  int login1(void){
+    printf("--------------------------\n");
+    printf("      LOGIN E SENHA\n");
+    printf("--------------------------\n");
+
+    printf("Login: ");
+    scanf("%s",&login);
+    printf("Senha: ");
+    scanf("%s",&senha);
+
+    ret_login = strcmp(login,cad_login);
+    ret_senha = strcmp(senha,cad_senha);
+    if (ret_login==0 && ret_senha==0){
+      printf("Login realizado com sucesso!");
+      }else{
+      printf("Login Invalido!\n");
+      system("cls");
+      return login1();
+      }
+     system("cls");
+     return main1();
+    }
 
 /* Estrutura da lista declarada para armazenar nossos dados. */
 typedef struct lista {
@@ -178,7 +240,7 @@ void deleta(void) {
                 principal = deleta_dados(principal);
 }
 
-int main(void) {
+int main1(void) {
 
         char escolha;
 
@@ -189,7 +251,8 @@ int main(void) {
                 fprintf(stdout, "2 - Exibir Dados do Pet Cadastrado\n");
                 fprintf(stdout, "3 - Buscar Pets Cadastrados\n");
                 fprintf(stdout, "4 - Excluir Pet\n");
-                fprintf(stdout, "5 - Finalizar Sessao\n\n");
+                fprintf(stdout, "5 - Acessar PetShop\n");
+                fprintf(stdout, "6 - Finalizar Sessao\n\n");
 
                 scanf("%c", &escolha);
 
@@ -211,6 +274,10 @@ int main(void) {
                                 break;
 
                         case '5':
+                                return compras();
+                                break;
+
+                        case '6':
                                 exit(0);
                                 break;
 
@@ -226,4 +293,81 @@ int main(void) {
         while (escolha > 0); /* Loop Principal. */
 
         return 0;
+}
+
+int compras(void) {
+  setlocale(LC_ALL, "Portuguese");
+  int i = 0, escolha, escolha2;
+  float valorracao=0, valorTotal=0,racao=0;
+  int pagamento=0, coleiras=0, totalcoleiras=0, shampoo=0, totalshampoo=0;
+  printf("\n\n");
+  printf("------------------------------");
+  printf("\n BEM VINDO AO NOSSO PETSHOP: \n");
+  printf("------------------------------");
+  printf("\n\n O que Deseja Adquirir? \n");
+  printf("------------------------------ \n");
+
+  printf(" Código \t");
+  printf(" Produto \t \t");
+  printf(" Preço \t\t\t" );
+  printf(" Descrição \t\t\ \n" );
+  printf(" 1 \t\t Ração \t\t\t R$10.9 por KG \t\t A melhor comida para seu pet \n");
+  printf(" 2 \t\t Coleira\t\t R$40 reais \t\t Revestida de titanium, para pet de grande porte. \n");
+  printf(" 3 \t\t Shampoo\t\t R$30 reais \t\t Com cheiro de castanhas do pará e quinoa. \n");
+  printf(" 4 \t\t Banho\t\t R$35 reais \t\t Banho com Hidrataçao. \n");
+  printf(" 5 \t\t Tosa\t\t R$45 reais \t\t Tosa simples. \n");
+  printf(" 6 \t\t Banho e Tosa\t\t R$80 reais \t\t Tosa simples e Banho com Hidrataçao. \n");
+
+  while(i == 0){
+    printf("Informe o código do produto que deseja comprar: \n");
+    scanf("%i",&escolha);
+
+    switch(escolha)
+    {
+      case 1:
+        printf("Quantos quilos de ração deseja comprar :\n");
+        scanf("%f",&racao);
+        valorracao= (racao * 10.9);
+        break;
+      case 2:
+        printf("Quantas coleiras deseja comprar :\n");
+        scanf("%i",&coleiras);
+        totalcoleiras=coleiras*40;
+        break;
+      case 3:
+        printf("Quantos shamppos deseja comprar :\n");
+        scanf("%i",&shampoo);
+        totalshampoo=shampoo*40;
+        break;
+      case 4:
+        printf("Deseja comprar o serviço de Banho? \n");
+        break;
+      case 5:
+        printf("Deseja comprar o serviço de Tosa? \n");
+        break;
+      case 6:
+        printf("Deseja comprar o serviço de Banho e Tosa? \n");
+        break;
+
+      default :
+      printf ("Valor invalido!\n");
+    }
+    printf("Para finalizar compra digite 1 , caso deseje continuar a compra digite 0: \n");
+    scanf("%i",&i);
+  }
+  valorTotal = valorracao + totalcoleiras+ totalshampoo;
+
+  printf("Sua compra vai custar R$ %.2f \n",valorTotal);
+  printf("Qual será a forma de pagamento?\n");
+  printf("1- PIX\n");
+  printf("2- Cartão de crédito\n");
+  printf("3- Cartão de débito\n");
+  printf("4- Mercado Pago\n");
+  printf("5- Dinheiro\n");
+  scanf("%i",&pagamento);
+  switch(pagamento)
+  default:
+    printf("Pagamento Realizado com sucesso!\n");
+
+  return main1();
 }

@@ -61,13 +61,13 @@ Dados *insere_dados(Dados *dados, char *nome, int idade) {
 /* Percorre todos os campos da lista e imprime ate o ponteiro proximo chegar em NULL. */
 void exibe_dados(Dados *dados) {
 
-        fprintf(stdout, "Cadastro:\n\n");
+        fprintf(stdout, "Cadastro De Pets:\n\n");
 
         fprintf(stdout, "------------------------\n");
 
         for (; dados != NULL; dados = dados->proximo) {
-                fprintf(stdout, "Nome: %s\n", dados->nome);
-                fprintf(stdout, "Idade: %d\n", dados->idade);
+                fprintf(stdout, "Nome Do Pet: %s\n", dados->nome);
+                fprintf(stdout, "Idade Do Pet: %d\n", dados->idade);
                 fprintf(stdout, "------------------------\n ");
         }
         printf("Pressione uma tecla para continuar.");
@@ -84,8 +84,8 @@ void busca_dados(Dados *dados, char *chave) {
                 if (strcmp(chave, dados->nome) == 0) {
 
                         fprintf(stdout, "------------------------\n");
-                        fprintf(stdout, "Nome: %s\n", dados->nome);
-                        fprintf(stdout, "Idade: %d\n", dados->idade);
+                        fprintf(stdout, "Nome do Pet: %s\n", dados->nome);
+                        fprintf(stdout, "Idade do Pet: %d\n", dados->idade);
                         fprintf(stdout, "------------------------\n");
                         achou++;
                 }
@@ -135,11 +135,11 @@ void insere(void) {
 
         nome = (char *)malloc(BUFFER);
 
-        fprintf(stdout, "\n\nDigite o Nome: \n----> ");
+        fprintf(stdout, "\n\nDigite o Nome Do Pet: \n----> ");
         scanf("%s", nome);
         fprintf(stdout, "\n");
 
-        fprintf(stdout, "Digite a Idade: \n----> ");
+        fprintf(stdout, "Digite a Idade Do Pet: \n----> ");
         scanf("%d", &idade);
         fprintf(stdout, "\n");
 
@@ -164,7 +164,7 @@ void busca(void) {
 
                 chave = (char *)malloc(BUFFER);
 
-                fprintf(stdout, "Digite o nome para buscar: \\n--> ");
+                fprintf(stdout, "Digite o nome do pet que deseja buscar: \\n--> ");
                 scanf("%s", chave);
 
                 busca_dados(principal, chave);
@@ -184,13 +184,12 @@ int main(void) {
 
         do {
                 system("cls");
-                fprintf(stdout, "\n Cadastro de Pessoas\n\n");
-                fprintf(stdout, "Escolha uma opcao: \n\n");
-                fprintf(stdout, "1 - Insere Dados\n");
-                fprintf(stdout, "2 - Exibe Dados\n");
-                fprintf(stdout, "3 - Busca Dados\n");
-                fprintf(stdout, "4 - Deleta Dados\n");
-                fprintf(stdout, "5 - Sair\n\n");
+                fprintf(stdout, "\n MENU DE OPCOES\n\n");
+                fprintf(stdout, "1 - Cadastro de Pet\n");
+                fprintf(stdout, "2 - Exibir Dados do Pet Cadastrado\n");
+                fprintf(stdout, "3 - Buscar Pets Cadastrados\n");
+                fprintf(stdout, "4 - Excluir Pet\n");
+                fprintf(stdout, "5 - Finalizar Sessao\n\n");
 
                 scanf("%c", &escolha);
 
@@ -216,7 +215,7 @@ int main(void) {
                                 break;
 
                         default:
-                                fprintf(stderr,"Digite uma opcao valida!\\n");
+                                fprintf(stderr,"Aguarde Um Momento...\\n");
                                 sleep(1);
                                 break;
                 }

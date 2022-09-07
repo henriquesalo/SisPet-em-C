@@ -1,3 +1,3 @@
-Sistema de PetShop(SisPet) feito em C - Para Estudo da Linguagem e Trabalho Acadêmico.
+PetShop System (SisPet) made in C - For Language Study and Academic Work.
 
-Obs: Sem Interface Gráfica.
+Note: No Graphical Interface.
